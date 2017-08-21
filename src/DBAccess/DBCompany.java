@@ -42,7 +42,6 @@ public class DBCompany {
         return company;
     }
 
-
     public static List<Company> getAllCompanies() {
         List<Company> companies = new ArrayList<Company>();
 
@@ -74,7 +73,8 @@ public class DBCompany {
     }
 
     private static Company getCompanyFromResultSet(ResultSet res) throws java.sql.SQLException {
-        return new Company(res.getString(CompanyTableInfo.COLUMN_NAME),
+        return new Company(res.getInt(CompanyTableInfo.COLUMN_ID),
+                res.getString(CompanyTableInfo.COLUMN_NAME),
                 res.getString(CompanyTableInfo.COLUMN_ADDRESS),
                 res.getString(CompanyTableInfo.COLUMN_BUSINESS_DOMAIN),
                 res.getString(CompanyTableInfo.COLUMN_URL),

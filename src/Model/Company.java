@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Company {
 
+    private int id;
     private String name;
     private String address;
     private String businessDomain;
@@ -12,7 +13,8 @@ public class Company {
     private int rating;
     private List<JobAd> jobAds;
 
-    public Company(String name, String address, String businessDomain, String url, int rating) {
+    public Company(int id, String name, String address, String businessDomain, String url, int rating) {
+        this.id = id;
         this.name = name;
         this.address = address;
         this.businessDomain = businessDomain;
