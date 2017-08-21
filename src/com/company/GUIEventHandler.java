@@ -2,7 +2,7 @@ package com.company;
 
 public class GUIEventHandler {
 
-    public class MainButtonClickedEvent {
+    public static class MainButtonClickedEvent {
         public MainButtonClickedEvent(){
             doSomething();
         }

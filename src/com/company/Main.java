@@ -174,7 +174,7 @@ public class Main extends Application {
     }
 
     private void mainMenuButtonClicked(){
-        eventHandler.new MainButtonClickedEvent();
+        new GUIEventHandler.MainButtonClickedEvent();
         window.setTitle("Main menu");
         window.setScene(scene);
     }
