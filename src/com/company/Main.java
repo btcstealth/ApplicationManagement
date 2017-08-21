@@ -2,10 +2,11 @@ package com.company;
 
 import BusinessLogic.BLLCompany;
 import DBAccess.*;
+import Labels.ButtonLabels;
+import Labels.TitleLabels;
 import Model.Company;
 import Model.Employee;
 import javafx.application.Application;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -14,11 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
-
 
 public class Main extends Application {
 
@@ -53,22 +51,17 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-
-        //DBConnect con = DBConnect.getInstance();
-        //con.connectToLocal(DatabaseInfoApplicationManagement.databasename, DatabaseInfo.user, DatabaseInfo.pw);
-        //Company comp1 = DBCompany.getCompanyById(1);
-        //System.out.println(comp1.toString());
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
-        window.setTitle("Main menu");
+        window.setTitle(TitleLabels.MAIN_MENU);
 
-        companyButton = new Button("Companies");
+        companyButton = new Button(ButtonLabels.COMPANIES);
         companyButton.setOnAction(e -> companyButtonClicked());
 
-        jobAdButton = new Button("JobAds");
+        jobAdButton = new Button(ButtonLabels.JOBADS);
         jobAdButton.setOnAction(e -> jobAdsButtonClicked());
 
 
@@ -80,21 +73,10 @@ public class Main extends Application {
         window.show();
     }
 
-    private void companyButtonClicked(){
-        if (companies == null)
-            companies = BLLCompany.getCompaniesMap();
 
-        if (companyNames != null && companyNames.isEmpty())
-            companyNames.addAll(companies.keySet());
-
-        window.setTitle("All companies");
-        window.setScene(companiesScene);
-    }
-
-    private void jobAdsButtonClicked(){
-        window.setTitle("All job ads");
-        window.setScene(jobAdsScene);
-    }
+    /**
+     * Scene creation functions
+     */
 
     private Scene createMainScene(){
         VBox layout = new VBox(10);
@@ -131,13 +113,13 @@ public class Main extends Application {
         listView.getItems().addAll("add1", "add2", "add3");
         listView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        Button mainMenuButton = new Button("Back to main menu");
+        Button mainMenuButton = new Button(ButtonLabels.TO_MAIN_MENU);
         mainMenuButton.setOnAction(e -> mainMenuButtonClicked());
 
-        Button showDetailsSelectedButton = new Button("Show details for selected job add");
+        Button showDetailsSelectedButton = new Button(ButtonLabels.SHOW_SELECTED_JOBAD);
         showDetailsSelectedButton.setOnAction(e -> showDetailsSelectedButtonClicked());
-        Button addButton = new Button("Add new job add");
-        Button removeSelectedButton = new Button("Remove selected add");
+        Button addButton = new Button(ButtonLabels.ADD_NEW_JOBAD);
+        Button removeSelectedButton = new Button(ButtonLabels.REMOVE_SELECTED_JOBAD);
 
 
         VBox jobAdsLayout = new VBox(10);
@@ -154,29 +136,18 @@ public class Main extends Application {
         companiesListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 
-        Button mainMenuButton = new Button("Back to main menu");
+        Button mainMenuButton = new Button(ButtonLabels.TO_MAIN_MENU);
         mainMenuButton.setOnAction(e -> mainMenuButtonClicked());
 
 
-        Button showSelectedButton = new Button("Show details for selected company");
-        Button addButton = new Button("Add a new company");
-        Button removeSelectedButton = new Button("Remove selected company");
+        Button showSelectedButton = new Button(ButtonLabels.SHOW_SELECTED_COMPANY);
+        Button addButton = new Button(ButtonLabels.ADD_NEW_COMPANY);
+        Button removeSelectedButton = new Button(ButtonLabels.REMOVE_SELECTED_COMPANY);
 
         VBox companiesLayout = new VBox(10);
         companiesLayout.setPadding(new Insets(20,20,20,20));
         companiesLayout.getChildren().addAll(companiesListView, showSelectedButton, addButton, removeSelectedButton, mainMenuButton);
         return new Scene(companiesLayout, 300, 450);
-    }
-
-
-    private void showDetailsSelectedButtonClicked(){
-        window.setScene(createCompaniesScene());
-    }
-
-    private void mainMenuButtonClicked(){
-        new GUIEventHandler.MainButtonClickedEvent();
-        window.setTitle("Main menu");
-        window.setScene(scene);
     }
 
 
@@ -190,4 +161,51 @@ public class Main extends Application {
 
 
 
+
+
+    /**
+     *
+     * Button click logic
+     *
+     */
+
+    /**
+     * Main menu buttons logic
+     */
+    private void mainMenuButtonClicked(){
+        new GUIEventHandler.MainButtonClickedEvent();
+        window.setTitle(TitleLabels.MAIN_MENU);
+        window.setScene(scene);
+    }
+
+
+    /**
+     * JobAds buttons logic
+     */
+    private void jobAdsButtonClicked(){
+        window.setTitle(ButtonLabels.ALL_JOBADS);
+        window.setScene(jobAdsScene);
+    }
+
+
+
+
+    /**
+     * Company buttons logic
+     */
+    private void companyButtonClicked(){
+        if (companies == null)
+            companies = BLLCompany.getCompaniesMap();
+
+        if (companyNames != null && companyNames.isEmpty())
+            companyNames.addAll(companies.keySet());
+
+        window.setTitle(ButtonLabels.ALL_COMPANIES);
+        window.setScene(companiesScene);
+    }
+
+
+    private void showDetailsSelectedButtonClicked(){
+        window.setScene(createCompaniesScene());
+    }
 }
