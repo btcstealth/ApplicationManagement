@@ -117,7 +117,7 @@ public class Main extends Application {
         mainMenuButton.setOnAction(e -> mainMenuButtonClicked());
 
         Button showDetailsSelectedButton = new Button(ButtonLabels.SHOW_SELECTED_JOBAD);
-        showDetailsSelectedButton.setOnAction(e -> showDetailsSelectedButtonClicked());
+        //showDetailsSelectedButton.setOnAction(e -> showDetailsSelectedJobAdButtonClicked());
         Button addButton = new Button(ButtonLabels.ADD_NEW_JOBAD);
         Button removeSelectedButton = new Button(ButtonLabels.REMOVE_SELECTED_JOBAD);
 
@@ -141,6 +141,7 @@ public class Main extends Application {
 
 
         Button showSelectedButton = new Button(ButtonLabels.SHOW_SELECTED_COMPANY);
+        showSelectedButton.setOnAction(e -> showDetailsSelectedCompanyButtonClicked());
         Button addButton = new Button(ButtonLabels.ADD_NEW_COMPANY);
         Button removeSelectedButton = new Button(ButtonLabels.REMOVE_SELECTED_COMPANY);
 
@@ -205,7 +206,10 @@ public class Main extends Application {
     }
 
 
-    private void showDetailsSelectedButtonClicked(){
-        window.setScene(createCompaniesScene());
+    private void showDetailsSelectedCompanyButtonClicked(){
+
+        new GUIEventHandler.ShowDetailsSelectedCompanyButtonClickedEvent(window);
+
+        window.setScene(createCompanyDetailsScene());
     }
 }

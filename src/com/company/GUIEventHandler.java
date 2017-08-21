@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.stage.Stage;
+
 public class GUIEventHandler {
 
     public static class MainButtonClickedEvent {
@@ -12,6 +14,22 @@ public class GUIEventHandler {
         }
 
     }
+
+
+    public static class ShowDetailsSelectedCompanyButtonClickedEvent {
+        Stage window;
+        public ShowDetailsSelectedCompanyButtonClickedEvent(Stage primaryStage){
+            window = primaryStage;
+            doSomething();
+        }
+
+        private void doSomething(){
+            window.setTitle("Selected company");
+        }
+
+    }
+
+
 
 
 }

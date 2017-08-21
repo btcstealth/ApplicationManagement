@@ -5,6 +5,9 @@ public class ButtonLabels {
     public final static String TO_MAIN_MENU = "To main menu";
 
 
+    /**
+     * Company labels
+     */
 
     public final static String COMPANIES = "Companies";
     public final static String ALL_COMPANIES = "All companies";
@@ -13,10 +16,11 @@ public class ButtonLabels {
     public final static String REMOVE_SELECTED_COMPANY = "Remove selected company";
 
 
-
+    /**
+     * Job ad labels
+     */
 
     public final static String JOBADS = "JobAds";
-
     public final static String ALL_JOBADS = "All job ads";
     public final static String SHOW_SELECTED_JOBAD = "Show details for selected job ad";
     public final static String ADD_NEW_JOBAD = "Add new job add";
